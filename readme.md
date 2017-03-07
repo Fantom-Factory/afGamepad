@@ -101,6 +101,8 @@ Gamepad comes bundled with the following jars:
 
 Later versions of `Gamepad` may brake the .jars out into their own pods, but for now they're exploded into `afGamepad.pod`.
 
+Note that due to how `purejavahidapi` is compiled, Gamepad is only compatible with JDK 8 or later.
+
 ## TODO
 
 - Add built-in support for more controllers

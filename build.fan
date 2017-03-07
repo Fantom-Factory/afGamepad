@@ -6,12 +6,12 @@ class Build : BuildPod {
 	new make() {
 		podName = "afGamepad"
 		summary = "Gamepad controller library"
-		version = Version("0.0.2")
+		version = Version("0.0.3")
 
 		meta = [
 			"pod.dis"			: "Gamepad",
 			"repo.internal"		: "true",
-			"repo.tags"			: "game",
+			"repo.tags"			: "misc, game",
 			"repo.public"		: "true"
 		]
 
