@@ -6,7 +6,7 @@ using [java] purejavahidapi::PureJavaHidApi
 using [java] purejavahidapi::InputReportListener
 
 ** Represents a Gamepad controller.
-** Use `listAllDevices()` to obtain an instance.
+** Use [listAllDevices()]`listAllDevices` to obtain an instance.
 class Gamepad {
 	** The 16 bit vendor ID.
 	const Int	vendorId
