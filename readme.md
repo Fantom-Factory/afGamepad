@@ -11,9 +11,9 @@
 
 The Gamepad library lets you receive input data and events from USB connected gamepads.
 
-If you play XBox or Playstation you're aware that the controllers are USB connected. But did you know you can plug them into your laptop and PC and use them there!?
+Those who play XBox or Playstation are aware that the controllers are USB connected, but did you know you they also work on laptops and PCs!?
 
-Well, you can!
+Well, they do!
 
 Gamepad controllers are Human Input Devices (HID) over USB. This library wraps the [Pure Java HID-API](https://github.com/nyholku/purejavahidapi) library to provide gamepad support in Fantom.
 
@@ -82,7 +82,7 @@ The standard controller button layout is as follows:
 
 ![Generic Controller Layout](http://eggbox.fantomfactory.org/pods/afGamepad/doc/gamepad.png)
 
-Only the following controllers are support out of the box:
+Only the following controllers are currently supported out of the box:
 
 ```
 table:
@@ -91,6 +91,8 @@ Vendor ID  Product ID  Product Description
 ---------  ----------  -------------------
  0xE8F      0x310D      GAMEPAD 3 TURBO
 ```
+
+If your controller is not listed, get in touch and we'll work to add it.
 
 ## Dependencies
 
@@ -102,6 +104,12 @@ Gamepad comes bundled with the following jars:
 Later versions of `Gamepad` may brake the .jars out into their own pods, but for now they're exploded into `afGamepad.pod`.
 
 Note that due to how `purejavahidapi` is compiled, Gamepad is only compatible with JDK 8 or later.
+
+## Compatibility
+
+Note that the following controllers do not register as USB HID devices and hence are not compatible with the Gamepad library:
+
+- Official XBox One Wireless Controller
 
 ## TODO
 
