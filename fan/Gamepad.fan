@@ -97,6 +97,7 @@ class Gamepad {
 
 		// or we could try to find a way to get and decode the HID Descriptor
 		// or we could try to find a java native gamepad api
+		// see https://github.com/nyholku/purejavahidapi/issues/43
 
 		rawValues := null as Enum:Float
 		if (source.getHidDeviceInfo.getVendorId == 0x045E && source.getHidDeviceInfo.getProductId == 0x028E)
