@@ -1,8 +1,8 @@
-#Gamepad v0.0.2
+#Gamepad v0.0.4
 ---
 
 [![Written in: Fantom](http://img.shields.io/badge/written%20in-Fantom-lightgray.svg)](http://fantom-lang.org/)
-[![pod: v0.0.2](http://img.shields.io/badge/pod-v0.0.2-yellow.svg)](http://www.fantomfactory.org/pods/afGamepad)
+[![pod: v0.0.4](http://img.shields.io/badge/pod-v0.0.4-yellow.svg)](http://www.fantomfactory.org/pods/afGamepad)
 ![Licence: ISC](http://img.shields.io/badge/licence-ISC-blue.svg)
 
 ## Overview
@@ -39,21 +39,25 @@ Full API & fandocs are available on the [Eggbox](http://eggbox.fantomfactory.org
 
 1. Create a text file called `Example.fan`
 
-        using concurrent
+        using concurrent::Actor
         
         class Example {
             Void main() {
                 // list all available HID devices
-                Gamepad.listAllHidDevices.each { echo(it) }
+                Gamepad.listHidDevices.each { echo("${it.vendorId.toHex(4)} ${it.productId.toHex(4)} $it") }
         
-                // choose your controller
-                gamepad := Gamepad.listAllHidDevices.find { it.prodcutDesc == "GAMEPAD 3 TURBO" }
+                // select any gamepad
+                gamepad := Gamepad.listGamepads.first
+                if (gamepad == null)
+                    return echo("No Gamepad detected")
+                echo("\nSelected: ${gamepad.prodcutDesc}\n")
         
                 // print which buttons are pressed
                 gamepad.onInput = |GamepadEvent event| {
                     if (event.buttonsDown.size > 0)
                         echo(event.buttonsDown)
                 }
+        
                 Actor.sleep(Duration.maxVal)
             }
         }
@@ -63,9 +67,16 @@ Full API & fandocs are available on the [Eggbox](http://eggbox.fantomfactory.org
 
         C:\> fan Example.fan
         
-        USB Keyboard
-        GAMEPAD 3 TURBO
-        Razer Orochi
+        045e 028e XBOX 360 For Windows (Controller)
+        04d9 010b USB Keyboard
+        04d9 010b USB Keyboard
+        04d9 010b USB Keyboard
+        0e8f 310d GAMEPAD 3 TURBO
+        1532 0013 Razer Orochi
+        1532 0013 Razer Orochi
+        
+        Selected: XBOX 360 For Windows (Controller)
+        
         [start]
         [select]
         [rightTrigger]
@@ -89,10 +100,9 @@ table:
 
 Vendor ID  Product ID  Product Description
 ---------  ----------  -------------------
- 0xE8F      0x310D      GAMEPAD 3 TURBO
+ 0x045E     0x028E      XBOX 360 For Windows (Controller)
+ 0x0E8F     0x310D      GAMEPAD 3 TURBO
 ```
-
-If your controller is not listed, get in touch and we'll work to add it.
 
 ## Dependencies
 
@@ -103,7 +113,7 @@ Gamepad comes bundled with the following jars:
 
 Later versions of `Gamepad` may brake the .jars out into their own pods, but for now they're exploded into `afGamepad.pod`.
 
-Note that due to how `purejavahidapi` is compiled, Gamepad is only compatible with JDK 8 or later.
+Note that due to how `pureJavaHidApi` is compiled, Gamepad is only compatible with JDK 8 or later.
 
 ## Compatibility
 
